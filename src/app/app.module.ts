@@ -7,6 +7,7 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DropdownlistFilterComponent } from './components/dropdownlist-filter/dropdownlist-filter.component';
+import { MultiselectFilterComponent } from './components/multiselect-filter/multiselect-filter.component';
 
 
 
@@ -14,7 +15,8 @@ import { DropdownlistFilterComponent } from './components/dropdownlist-filter/dr
 @NgModule({
   declarations: [
     AppComponent,
-    DropdownlistFilterComponent
+    DropdownlistFilterComponent,
+    MultiselectFilterComponent
   ],
   imports: [
     BrowserModule,
