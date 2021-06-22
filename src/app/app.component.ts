@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { categories } from './data.categories';
+import { categories, dropdownItem } from './data.categories';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { SortDescriptor } from '@progress/kendo-data-query';
 import { ProductService } from './product.service';
@@ -14,11 +14,13 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   public dropDownItems = categories;
   public defaultItem = { text: 'Filter by Category', value: null };
+  public placeholder = 'Filter by Category';
   public gridItems: Observable<GridDataResult> = new Observable<GridDataResult>();
   public pageSize: number = 10;
   public skip: number = 0;
   public sortDescriptor: SortDescriptor[] = [];
   public filterTerm: number = 0;
+  public filters: dropdownItem[];
 
   constructor(private service: ProductService) {
     this.loadGridItems();
@@ -30,7 +32,7 @@ export class AppComponent {
   }
 
   private loadGridItems(): void {
-    this.gridItems = this.service.getProducts(this.skip, this.pageSize, this.sortDescriptor, this.filterTerm);
+    this.gridItems = this.service.getProducts(this.skip, this.pageSize, this.sortDescriptor, this.filters);
   }
 
   public handleSortChange(descriptor: SortDescriptor[]): void {
@@ -38,15 +40,9 @@ export class AppComponent {
     this.loadGridItems();
   }
 
-  public handleFilterChange(item: { text: string; value: number | null }): void {
-    this.filterTerm = item.value;
-    this.skip = 0;
-    this.loadGridItems();
-  }
-
-  public handleValueChange(value: number): void {
+  public handleValueChange(value: Array<dropdownItem>): void {
     console.log('app handle value change', value);
-    this.filterTerm = value;
+    this.filters = value;
     this.skip = 0;
     this.loadGridItems();
   }

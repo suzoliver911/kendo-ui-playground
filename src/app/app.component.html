@@ -27,14 +27,14 @@
   <kendo-grid-column field="ProductName" title="Product Name"> </kendo-grid-column>
   <kendo-grid-column field="Category.CategoryName" title="Category">
     <ng-template kendoGridFilterCellTemplate let-filter>
-      <app-dropdownlist-filter
+      <app-multiselect-filter
         [data]="dropDownItems"
-        [defaultItem]="defaultItem"
+        [placeholder]="placeholder"
         textField="text"
         valueField="value"
         (valueChangeEvent)="handleValueChange($event)"
       >
-      </app-dropdownlist-filter>
+      </app-multiselect-filter>
       <!-- <kendo-dropdownlist
         [data]="dropDownItems"
         [defaultItem]="defaultItem"

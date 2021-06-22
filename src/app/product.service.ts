@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { DataResult, orderBy, process, SortDescriptor } from '@progress/kendo-data-query';
 import { Observable, of } from 'rxjs';
 import { products } from './data.products';
+import { dropdownItem } from './data.categories';
 
 @Injectable()
 export class ProductService {
@@ -9,20 +10,18 @@ export class ProductService {
     skip: number,
     pageSize: number,
     sortDescriptor: SortDescriptor[],
-    filterTerm: number
+    filters: dropdownItem[]
   ): Observable<DataResult> {
     let data;
-    if (filterTerm) {
+    if (filters) {
       data = process(orderBy(products, sortDescriptor), {
         filter: {
-          logic: 'and',
-          filters: [
-            {
-              field: 'CategoryID',
-              operator: 'eq',
-              value: filterTerm,
-            },
-          ],
+          logic: 'or',
+          filters: filters.map((value) => ({
+            field: 'CategoryID',
+            operator: 'eq',
+            value: value.value,
+          })),
         },
       }).data;
     } else {

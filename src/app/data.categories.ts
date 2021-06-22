@@ -1,3 +1,8 @@
+export interface dropdownItem {
+  text: string;
+  value: number;
+}
+
 export const categories: Array<{ text: string; value: number }> = [
   { text: 'Beverages', value: 1 },
   { text: 'Condiments', value: 2 },
