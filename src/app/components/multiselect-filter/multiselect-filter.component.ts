@@ -7,12 +7,16 @@ import { dropdownItem } from 'src/app/data.categories';
   selector: 'app-multiselect-filter',
   template: `
     <kendo-multiselect
+      [listHeight]="300"
+      [checkboxes]="true"
+      [autoClose]="false"
+      [clearButton]="true"
       [data]="data"
-      (valueChange)="onChange($event)"
       [placeholder]="placeholder"
       [value]="selectedValue"
       [textField]="textField"
       [valueField]="valueField"
+      (valueChange)="onChange($event)"
     >
     </kendo-multiselect>
   `,
@@ -24,7 +28,7 @@ export class MultiselectFilterComponent extends BaseFilterCellComponent {
   }
   public get selectedValue(): any {
     const filter = this.filterByField(this.valueField);
-    return filter ? filter.value : null;
+    return filter ? filter.value : this.data;
   }
 
   @Input() public filter: CompositeFilterDescriptor;

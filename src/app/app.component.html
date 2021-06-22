@@ -35,19 +35,11 @@
         (valueChangeEvent)="handleValueChange($event)"
       >
       </app-multiselect-filter>
-      <!-- <kendo-dropdownlist
-        [data]="dropDownItems"
-        [defaultItem]="defaultItem"
-        textField="text"
-        valueField="value"
-        (valueChange)="handleFilterChange($event)"
-      >
-      </kendo-dropdownlist> -->
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column field="UnitPrice" title="Unit Price" [width]="140" format="{0:c}" [filterable]="false">
+  <kendo-grid-column field="UnitPrice" title="Unit Price" [width]="200" format="{0:c}" [filterable]="false">
   </kendo-grid-column>
-  <kendo-grid-column field="Discontinued" [width]="140" filter="boolean">
+  <kendo-grid-column field="Discontinued" [width]="200" filter="boolean">
     <ng-template kendoGridCellTemplate let-dataItem>
       <input type="checkbox" [checked]="dataItem.Discontinued" disabled />
     </ng-template>
