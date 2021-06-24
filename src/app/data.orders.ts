@@ -4,7 +4,7 @@ export const orders = [
     OrderNumber: 'Q100094562',
     AccountNumber: '7234570',
     AccessionNumber: 'Q100094562',
-    final: false,
+    Final: false,
     Status: {
       StatusID: 1,
       StatusName: 'Not Sent to Lab',
@@ -15,6 +15,15 @@ export const orders = [
       dob: 'May 13, 2005',
     },
     OrderedDate: 'Jun 22, 2021 14:50',
+    Tests: [
+      {
+        cancelled: false,
+        revised: false,
+        status: 'In Progress',
+        publishedName: 'Epilepsys/Seizure Genetic Panals by Next-Generation Sequencing (NGS), Varies',
+        mayoTestID: 'ESPAN',
+      },
+    ],
   },
   {
     OrderID: 2,
@@ -31,5 +40,14 @@ export const orders = [
       dob: 'June 11, 1970',
     },
     OrderedDate: 'Jun 22, 2021 11:25',
+    Tests: [
+      {
+        cancelled: false,
+        revised: false,
+        status: 'In Progress',
+        publishedName: 'Epilepsys/Seizure Genetic Panals by Next-Generation Sequencing (NGS), Varies',
+        mayoTestID: 'ESPAN',
+      },
+    ],
   },
 ];

@@ -21,6 +21,32 @@
       </div>
     </ng-template>
   </kendo-grid-column>
+  <kendo-grid-column [width]="375" [resizable]="true" [filterable]="true" title="Tests Ordered" field="Tests">
+    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+      <div *ngFor="let test of dataItem.Tests; let i = index" class="d-flex">
+        <div class="icon-container mr-2">
+          <svg class="icon canceled" *ngIf="test.cancelled">
+            <title>Canceled Test</title>
+            <use xlink:href="#circle-slash"></use>
+          </svg>
+          <svg class="icon revised" *ngIf="test.revised && !test.cancelled">
+            <title>Revised Test</title>
+            <use xlink:href="#arrow-clockwise"></use>
+          </svg>
+          <svg class="icon primary" *ngIf="!test.cancelled && !test.revised && test.status?.toUpperCase() === 'FINAL'">
+            <title>Test Complete</title>
+            <use xlink:href="#circle-fill"></use>
+          </svg>
+          <svg class="icon primary" *ngIf="!test.cancelled && !test.revised && test.status?.toUpperCase() !== 'FINAL'">
+            <title>Test In Progress</title>
+            <use xlink:href="#circle"></use>
+          </svg>
+        </div>
+        <span class="font-weight-bold test-id" id="testid-{{ rowIndex }}-{{ i }}">{{ test.mayoTestID }}</span>
+        <span class="test-name" id="test-name-{{ rowIndex }}-{{ i }}">{{ test.publishedName }}</span>
+      </div>
+    </ng-template>
+  </kendo-grid-column>
   <kendo-grid-column field="Status.StatusName" title="Status">
     <ng-template kendoGridFilterCellTemplate let-filter>
       <app-multiselect-filter

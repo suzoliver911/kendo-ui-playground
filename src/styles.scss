@@ -2,3 +2,27 @@
 // Set the variables here.
 @import '~@progress/kendo-theme-bootstrap/dist/all.scss';
 @import '~bootstrap/scss/bootstrap.scss';
+
+.icon-container {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  margin-top: -4px;
+
+  &.primary {
+    color: $primary;
+  }
+
+  &.revised {
+    color: $warning;
+  }
+
+  &.canceled {
+    color: $danger;
+  }
+}
