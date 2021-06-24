@@ -1,4 +1,4 @@
-export const Orders = [
+export const orders = [
   {
     OrderID: 1,
     OrderNumber: 'Q100094562',
@@ -20,5 +20,16 @@ export const Orders = [
     OrderID: 2,
     OrderNumber: 'Q100094560',
     AccountNumber: '',
+    final: false,
+    Status: {
+      StatusID: 2,
+      StatusName: 'Order Transmitted',
+    },
+    Patient: {
+      name: 'Testa, Chuck',
+      id: 44,
+      dob: 'June 11, 1970',
+    },
+    OrderedDate: 'Jun 22, 2021 11:25',
   },
 ];

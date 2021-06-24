@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DropdownlistFilterComponent } from './components/dropdownlist-filter/dropdownlist-filter.component';
 import { MultiselectFilterComponent } from './components/multiselect-filter/multiselect-filter.component';
+import { ProductGridComponent } from './components/product-grid/product-grid.component';
+import { OrderGridComponent } from './components/order-grid/order-grid.component';
 
 
 
@@ -16,7 +18,9 @@ import { MultiselectFilterComponent } from './components/multiselect-filter/mult
   declarations: [
     AppComponent,
     DropdownlistFilterComponent,
-    MultiselectFilterComponent
+    MultiselectFilterComponent,
+    ProductGridComponent,
+    OrderGridComponent
   ],
   imports: [
     BrowserModule,
