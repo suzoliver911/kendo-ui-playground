@@ -1,9 +1,9 @@
 export const orders = [
   {
     OrderID: 1,
-    OrderNumber: 'Q100094562',
-    AccountNumber: '7234570',
-    AccessionNumber: 'Q100094562',
+    clientOrderNumber: 'Q100094562',
+    accountNumber: '7234570',
+    accessionNumber: 'Q100094562',
     Final: false,
     Status: {
       StatusID: 1,
@@ -27,8 +27,9 @@ export const orders = [
   },
   {
     OrderID: 2,
-    OrderNumber: 'Q100094560',
-    AccountNumber: '',
+    clientOrderNumber: 'Q100094560',
+    accountNumber: '7234577',
+    accessionNumber: 'Q100094560',
     final: false,
     Status: {
       StatusID: 2,

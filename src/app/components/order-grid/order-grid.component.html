@@ -59,5 +59,22 @@
       </app-multiselect-filter>
     </ng-template>
   </kendo-grid-column>
+  <kendo-grid-column
+    [width]="225"
+    [resizable]="true"
+    [filterable]="true"
+    id="order-info-col"
+    title="Order Information"
+    field="order"
+  >
+    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+      <div>
+        <div class="font-weight-bold">{{ dataItem.clientOrderNumber }}</div>
+        <div>{{ dataItem.accountNumber }}</div>
+        <div>{{ dataItem.accessionNumber }}</div>
+      </div>
+    </ng-template>
+  </kendo-grid-column>
+
   <kendo-grid-column field="OrderedDate" title="Ordered Date" [filterable]="false"> </kendo-grid-column>
 </kendo-grid>
