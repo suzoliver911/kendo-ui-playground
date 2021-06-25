@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { SortDescriptor } from '@progress/kendo-data-query';
 import { Observable } from 'rxjs';
 import { dropdownItem, statuses } from 'src/app/data.statuses';
 import { OrderService } from 'src/app/order.service';
+import { subDays } from 'date-fns';
 
 @Component({
   selector: 'app-order-grid',
@@ -12,6 +13,8 @@ import { OrderService } from 'src/app/order.service';
   providers: [OrderService],
 })
 export class OrderGridComponent {
+  @ViewChild('dt', { static: true }) dt;
+
   public dropDownItems = statuses;
   public placeholder = 'Filter by Status';
   public gridItems: Observable<GridDataResult> = new Observable<GridDataResult>();
@@ -21,6 +24,7 @@ export class OrderGridComponent {
   public filterTerm: number = 0;
   public filters: dropdownItem[];
   public showDropdown = true;
+  public last90: Date = subDays(new Date(), 90);
 
   constructor(private service: OrderService) {
     this.loadGridItems();
@@ -49,5 +53,12 @@ export class OrderGridComponent {
 
   public getCurrentDate(): Date {
     return new Date();
+  }
+
+  updateOrderedDateFilter() {
+    const fromDt = this.dt.dateSearchRange.from;
+    const toDt = this.dt.dateSearchRange.to;
+
+    console.log('ordered data range updated');
   }
 }

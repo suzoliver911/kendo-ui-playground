@@ -24,9 +24,9 @@
   </ul>
 </div>
 
-<form id="orderSearchForm" focusFirstInvalidInput [formGroup]="orderSearchForm">
+<form id="orderSearchForm" focusFirstInvalidInput>
   <div class="form-group flex-column">
-    <label id="orderSearchHeaderDates" class="col-form-label">and Ordered Date:</label>
+    <label id="orderSearchHeaderDates" class="font-weight-bold">Ordered Date</label>
     <mcl-date-search #dt [fromDt]="this.last90" (dateChangedFn)="updateOrderedDateFilter()"></mcl-date-search>
   </div>
 </form>

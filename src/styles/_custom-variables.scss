@@ -1,0 +1,83 @@
+// Overwrite Bootstrap's variables here.
+
+// You can find them in the node_modules/bootstrap/scss/_variables.scss file.
+// Copy the variables you need into this file, don't modify files under node_modules/.
+
+// Some example variables that you can uncomment:
+
+// Enabling shadows and gradients
+$enable-rounded: false;
+$enable-responsive-font-sizes: true;
+
+// Changing the body background and text
+$body-bg: #fff;
+$body-color: #444;
+
+// monochromes
+$white: #fff;
+$gray-100: #f7f7f7; // #f8f9fa !default;
+$gray-200: #e4e4e4; // #e9ecef !default;
+$gray-300: #d0d0d0; // #dee2e6 !default;
+$gray-400: #c6c6c6; // #ced4da !default;
+$gray-500: #a9a9a9; // #adb5bd !default;
+$gray-600: #646464; // #6c757d !default;
+$gray-700: #474747; // #495057 !default;
+$gray-800: #333333; // #343a40 !default;
+$gray-900: #292929; // #212529 !default;
+$black: #000;
+
+// colors
+$blue: #2f6ecc;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #dc3545 !default;
+$orange: #fd7e14 !default;
+$yellow: #ffc107 !default;
+$green: #28a745 !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+
+// Changing the theme colors
+$primary: #2f6ecc;
+
+$info: #cce5ff; // from banner notification
+$secondary: #e4e7eb;
+$success: #28a745;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #333333;
+
+// Adding (!) an additional theme color (ex. classes btn-cool, bg-cool)
+$theme-colors: (
+  'header': #54585a,
+  'accent-orange': #dc4405,
+  'accent-red': #9e3737,
+  'accent-gray': #646464,
+  'underscore': #cd3c00,
+  'submenu': #1a1a1a,
+  'submenu-mobile': #7d7d7d,
+  'tertiary': #888,
+  'info-blue-border': #abcdde,
+  'info-blue': #e6f3f9,
+);
+
+// set to MCL fonts
+$font-family-sans-serif: Arial, Helvetica, sans-serif;
+$font-family-narrow: 'Arial Narrow', sans-serif;
+$font-family-bolder: 'Arial Black', sans-serif;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Courier New', monospace;
+$font-family-base: $font-family-sans-serif;
+
+$font-weight-bolder: 900; // bolder
+
+$breadcrumb-divider: '\00BB';
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);

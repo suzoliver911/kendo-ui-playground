@@ -11,9 +11,10 @@ import { MultiselectFilterComponent } from './components/multiselect-filter/mult
 import { ProductGridComponent } from './components/product-grid/product-grid.component';
 import { OrderGridComponent } from './components/order-grid/order-grid.component';
 import { DateSearchComponent } from './components/date-search/date-search.component';
-
-
-
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { LabelModule } from '@progress/kendo-angular-label';
+import { IntlModule } from '@progress/kendo-angular-intl';
 
 @NgModule({
   declarations: [
@@ -22,16 +23,20 @@ import { DateSearchComponent } from './components/date-search/date-search.compon
     MultiselectFilterComponent,
     ProductGridComponent,
     OrderGridComponent,
-    DateSearchComponent
+    DateSearchComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     DropDownsModule,
     BrowserAnimationsModule,
-    GridModule
+    GridModule,
+    DateInputsModule,
+    InputsModule,
+    LabelModule,
+    IntlModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
