@@ -15,6 +15,7 @@ export const orders = [
       dob: 'May 13, 2005',
     },
     OrderedDate: 'Jun 22, 2021 14:50',
+    collectedOn: 'Jun 22, 2021 14:00',
     Tests: [
       {
         cancelled: false,
@@ -41,6 +42,7 @@ export const orders = [
       dob: 'June 11, 1970',
     },
     OrderedDate: 'Jun 22, 2021 11:25',
+    collectedOn: 'Jun 22, 2021 11:00',
     Tests: [
       {
         cancelled: false,

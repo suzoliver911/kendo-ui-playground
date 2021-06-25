@@ -1,4 +1,36 @@
 <h2 class="mt-4">Orders</h2>
+<div id="orderStatusKey">
+  <button id="toggleStatusKeyButton" class="btn" type="button" (click)="showDropdown = !showDropdown">
+    <span [class.down]="!showDropdown" class="arrow"></span>
+    TEST STATUS KEY
+  </button>
+  <ul class="list-group d-flex" *ngIf="showDropdown">
+    <li class="list-group-item">
+      <svg class="icon primary"><use xlink:href="#circle-fill"></use></svg>
+      Test Complete
+    </li>
+    <li class="list-group-item">
+      <svg class="icon primary"><use xlink:href="#circle"></use></svg>
+      Test In Progress
+    </li>
+    <li class="list-group-item">
+      <svg class="icon revised"><use xlink:href="#arrow-clockwise"></use></svg>
+      Revised Test
+    </li>
+    <li class="list-group-item">
+      <svg class="icon canceled"><use xlink:href="#slash-circle"></use></svg>
+      Canceled Test
+    </li>
+  </ul>
+</div>
+
+<form id="orderSearchForm" focusFirstInvalidInput [formGroup]="orderSearchForm">
+  <div class="form-group flex-column">
+    <label id="orderSearchHeaderDates" class="col-form-label">and Ordered Date:</label>
+    <mcl-date-search #dt [fromDt]="this.last90" (dateChangedFn)="updateOrderedDateFilter()"></mcl-date-search>
+  </div>
+</form>
+
 <kendo-grid
   [data]="gridItems | async"
   [pageSize]="pageSize"
@@ -10,6 +42,9 @@
   (sortChange)="handleSortChange($event)"
   [height]="645"
   [filterable]="true"
+  [resizable]="true"
+  [reorderable]="true"
+  [columnMenu]="{ filter: false }"
 >
   <kendo-grid-column field="OrderID" title="ID" [width]="50" [filterable]="false"> </kendo-grid-column>
   <kendo-grid-column field="Patient" title="Patient Name">
@@ -75,6 +110,16 @@
       </div>
     </ng-template>
   </kendo-grid-column>
-
   <kendo-grid-column field="OrderedDate" title="Ordered Date" [filterable]="false"> </kendo-grid-column>
+
+  <!-- Hidden Columns ----------------------------------------------->
+  <!-- Collected Date -->
+  <kendo-grid-column [hidden]="true" field="collectedOnUtc" title="Collected Date" [filterable]="true">
+    <ng-template kendoGridCellTemplate let-dataItem>
+      <span>
+        {{ dataItem.collectedOn }}
+      </span>
+    </ng-template>
+  </kendo-grid-column>
+  <!-- END Hidden Columns ----------------------------------------->
 </kendo-grid>

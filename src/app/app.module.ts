@@ -10,6 +10,7 @@ import { DropdownlistFilterComponent } from './components/dropdownlist-filter/dr
 import { MultiselectFilterComponent } from './components/multiselect-filter/multiselect-filter.component';
 import { ProductGridComponent } from './components/product-grid/product-grid.component';
 import { OrderGridComponent } from './components/order-grid/order-grid.component';
+import { DateSearchComponent } from './components/date-search/date-search.component';
 
 
 
@@ -20,7 +21,8 @@ import { OrderGridComponent } from './components/order-grid/order-grid.component
     DropdownlistFilterComponent,
     MultiselectFilterComponent,
     ProductGridComponent,
-    OrderGridComponent
+    OrderGridComponent,
+    DateSearchComponent
   ],
   imports: [
     BrowserModule,

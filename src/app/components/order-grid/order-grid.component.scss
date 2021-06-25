@@ -6,3 +6,40 @@
 .test-name {
   max-width: 30em;
 }
+#orderStatusKey {
+  font-size: 0.9rem;
+  margin-left: auto;
+  margin-bottom: 2em;
+}
+#toggleStatusKeyButton {
+  font-weight: 700;
+
+  .arrow {
+    display: inline-block;
+    margin-right: 0.35em;
+    vertical-align: 0.255em;
+    border-top: 0;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0.3em solid;
+    border-left: 0.3em solid transparent;
+
+    &.down {
+      transform: rotate(-180deg);
+    }
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.list-group {
+  margin-left: 2.2em;
+  display: flex;
+  flex-direction: row;
+}
+
+.list-group-item {
+  border: none;
+  padding: 0.25rem 0.5rem;
+}

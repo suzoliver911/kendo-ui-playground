@@ -20,6 +20,7 @@ export class OrderGridComponent {
   public sortDescriptor: SortDescriptor[] = [];
   public filterTerm: number = 0;
   public filters: dropdownItem[];
+  public showDropdown = true;
 
   constructor(private service: OrderService) {
     this.loadGridItems();
@@ -44,5 +45,9 @@ export class OrderGridComponent {
     this.filters = value;
     this.skip = 0;
     this.loadGridItems();
+  }
+
+  public getCurrentDate(): Date {
+    return new Date();
   }
 }
