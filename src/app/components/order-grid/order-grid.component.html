@@ -46,19 +46,25 @@
   [reorderable]="true"
   [columnMenu]="{ filter: false }"
 >
-  <kendo-grid-column field="OrderID" title="ID" [width]="50" [filterable]="false"> </kendo-grid-column>
-  <kendo-grid-column field="Patient" title="Patient Name">
+  <kendo-grid-column field="orderID" title="ID" [width]="50" [filterable]="false"> </kendo-grid-column>
+  <kendo-grid-column field="patient" title="Patient Information">
+    <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+      <kendo-grid-string-filter-cell [column]="column" [showOperators]="false"> </kendo-grid-string-filter-cell>
+    </ng-template>
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       <div>
-        <div class="font-weight-bold">{{ dataItem.Patient.name }}</div>
-        <div>{{ dataItem.Patient.id }}</div>
-        <div>{{ dataItem.Patient.dob }}</div>
+        <div class="font-weight-bold">{{ dataItem.patient.name }}</div>
+        <div>{{ dataItem.patient.id }}</div>
+        <div>{{ dataItem.patient.dob }}</div>
       </div>
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column [width]="375" [resizable]="true" [filterable]="true" title="Tests Ordered" field="Tests">
+  <kendo-grid-column [width]="375" [resizable]="true" [filterable]="true" title="Tests Ordered" field="tests">
+    <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+      <kendo-grid-string-filter-cell [column]="column" [showOperators]="false"> </kendo-grid-string-filter-cell>
+    </ng-template>
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
-      <div *ngFor="let test of dataItem.Tests; let i = index" class="d-flex">
+      <div *ngFor="let test of dataItem.tests; let i = index" class="d-flex">
         <div class="icon-container mr-2">
           <svg class="icon canceled" *ngIf="test.cancelled">
             <title>Canceled Test</title>
@@ -82,7 +88,7 @@
       </div>
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column field="Status.StatusName" title="Status">
+  <kendo-grid-column field="status.name" title="status">
     <ng-template kendoGridFilterCellTemplate let-filter>
       <app-multiselect-filter
         [data]="dropDownItems"
@@ -102,6 +108,9 @@
     title="Order Information"
     field="order"
   >
+    <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+      <kendo-grid-string-filter-cell [column]="column" [showOperators]="false"> </kendo-grid-string-filter-cell>
+    </ng-template>
     <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
       <div>
         <div class="font-weight-bold">{{ dataItem.clientOrderNumber }}</div>
@@ -110,14 +119,117 @@
       </div>
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column field="OrderedDate" title="Ordered Date" [filterable]="false"> </kendo-grid-column>
+  <kendo-grid-column field="orderedDate" title="Ordered Date" [filterable]="false"> </kendo-grid-column>
 
   <!-- Hidden Columns ----------------------------------------------->
   <!-- Collected Date -->
-  <kendo-grid-column [hidden]="true" field="collectedOnUtc" title="Collected Date" [filterable]="true">
+  <kendo-grid-column [hidden]="true" field="collectedOn" title="Collected Date" [filterable]="true">
     <ng-template kendoGridCellTemplate let-dataItem>
       <span>
         {{ dataItem.collectedOn }}
+      </span>
+    </ng-template>
+  </kendo-grid-column>
+  <!-- Soft Order Number(s) -->
+  <kendo-grid-column
+    [hidden]="true"
+    [width]="150"
+    [minResizableWidth]="100"
+    [filterable]="true"
+    id="soft-order-number-col"
+    field="softOrderNumber"
+    title="Soft Order Number(s)"
+  >
+    <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+      <kendo-grid-string-filter-cell [column]="column" [showOperators]="false"> </kendo-grid-string-filter-cell>
+    </ng-template>
+    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+      <span>
+        {{ dataItem.softOrderNumber }}
+      </span>
+    </ng-template>
+  </kendo-grid-column>
+
+  <!-- Specimen Delievered -->
+  <kendo-grid-column
+    [hidden]="true"
+    field="tests.receiptOn"
+    title="Specimen Delivered"
+    [filterable]="true"
+    [width]="255"
+  >
+    <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+      <kendo-datepicker
+        id="testReceiptDateFilter"
+        [max]="getCurrentDate()"
+        placeholder=""
+        (valueChange)="onDateFilterChange($event, column.field)"
+        [navigation]="false"
+      ></kendo-datepicker>
+    </ng-template>
+    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+      <span>
+        <ul class="list-unstyled pb-0 mb-0">
+          <li *ngFor="let test of dataItem.tests">
+            <ng-container *ngIf="test.receiptOn">
+              <span>{{ test.mayoTestID }} : {{ test.receiptOn }}</span>
+            </ng-container>
+          </li>
+        </ul>
+      </span>
+    </ng-template>
+  </kendo-grid-column>
+  <!-- Received in Lab -->
+  <kendo-grid-column
+    [hidden]="true"
+    field="tests.receivedOnUtc"
+    title="Received In Lab"
+    [width]="255"
+    [filterable]="true"
+  >
+    <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+      <kendo-datepicker
+        id="testReceivedDateFilter"
+        [max]="getCurrentDate()"
+        placeholder=""
+        (valueChange)="onDateFilterChange($event, column.field)"
+        [navigation]="false"
+      ></kendo-datepicker>
+    </ng-template>
+    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+      <span>
+        <ul class="list-unstyled pb-0 mb-0">
+          <li *ngFor="let test of dataItem.tests">
+            <ng-container *ngIf="test.receivedOn">
+              <span class="test-id">{{ test.mayoTestID }} : {{ test.receivedOn }}</span>
+            </ng-container>
+          </li>
+        </ul>
+      </span>
+    </ng-template>
+  </kendo-grid-column>
+
+  <!-- Canceled Date -->
+  <kendo-grid-column [hidden]="true" field="tests.canceledOn" title="Canceled Date" [width]="255" [filterable]="true">
+    <ng-template kendoGridFilterCellTemplate let-filter let-column="column">
+      <kendo-datepicker
+        id="testCanceledDateFilter"
+        [max]="getCurrentDate()"
+        placeholder=""
+        (valueChange)="onDateFilterChange($event, column.field)"
+        [navigation]="false"
+      ></kendo-datepicker>
+    </ng-template>
+    <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+      <span>
+        <ul class="list-unstyled pb-0 mb-0">
+          <li *ngFor="let test of dataItem.tests">
+            <ng-container *ngIf="test.cancelled">
+              <span>{{ test.mayoTestID }}</span
+              >: {{ test.canceledOn || '' }}
+            </ng-container>
+          </li>
+        </ul>
       </span>
     </ng-template>
   </kendo-grid-column>

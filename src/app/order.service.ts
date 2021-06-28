@@ -18,7 +18,7 @@ export class OrderService {
         filter: {
           logic: 'or',
           filters: filters.map((value) => ({
-            field: 'Status.StatusID',
+            field: 'status.id',
             operator: 'eq',
             value: value.value,
           })),
