@@ -28,7 +28,7 @@ export class MultiselectFilterComponent extends BaseFilterCellComponent {
   }
   public get selectedValue(): any {
     const filter = this.filterByField(this.valueField);
-    return filter ? filter.value : this.data;
+    return filter ? filter.value : null;
   }
 
   @Input() public filter: CompositeFilterDescriptor;

@@ -83,12 +83,12 @@
             <use xlink:href="#circle"></use>
           </svg>
         </div>
-        <span class="font-weight-bold test-id" id="testid-{{ rowIndex }}-{{ i }}">{{ test.mayoTestID }}</span>
-        <span class="test-name" id="test-name-{{ rowIndex }}-{{ i }}">{{ test.publishedName }}</span>
+        <span class="font-weight-bold test-id" id="testid-{{ rowIndex }}-{{ i }}">{{ test.info.mayoTestID }}</span>
+        <span class="test-name" id="test-name-{{ rowIndex }}-{{ i }}">{{ test.info.publishedName }}</span>
       </div>
     </ng-template>
   </kendo-grid-column>
-  <kendo-grid-column field="status.name" title="status">
+  <kendo-grid-column field="status.name" title="Status">
     <ng-template kendoGridFilterCellTemplate let-filter>
       <app-multiselect-filter
         [data]="dropDownItems"
@@ -172,7 +172,7 @@
         <ul class="list-unstyled pb-0 mb-0">
           <li *ngFor="let test of dataItem.tests">
             <ng-container *ngIf="test.receiptOn">
-              <span>{{ test.mayoTestID }} : {{ test.receiptOn }}</span>
+              <span class="font-weight-bold">{{ test.info.mayoTestID }} </span> - {{ test.receiptOn }}
             </ng-container>
           </li>
         </ul>
@@ -201,7 +201,7 @@
         <ul class="list-unstyled pb-0 mb-0">
           <li *ngFor="let test of dataItem.tests">
             <ng-container *ngIf="test.receivedOn">
-              <span class="test-id">{{ test.mayoTestID }} : {{ test.receivedOn }}</span>
+              <span class="font-weight-bold">{{ test.info.mayoTestID }} </span> - {{ test.receivedOn }}
             </ng-container>
           </li>
         </ul>

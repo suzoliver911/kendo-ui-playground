@@ -20,7 +20,13 @@ export class OrderGridComponent {
   public gridItems: Observable<GridDataResult> = new Observable<GridDataResult>();
   public pageSize: number = 10;
   public skip: number = 0;
-  public sortDescriptor: SortDescriptor[] = [];
+  // public sortDescriptor: SortDescriptor[] = [];
+  public sortDescriptor: SortDescriptor[] = [
+    {
+      field: 'orderedDate',
+      dir: 'desc',
+    },
+  ];
   public filterTerm: number = 0;
   public filters: dropdownItem[];
   public showDropdown = true;

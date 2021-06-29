@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataResult, orderBy, process, SortDescriptor } from '@progress/kendo-data-query';
 import { Observable, of } from 'rxjs';
-import { orders } from './data.orders';
+import { orders } from './data.mock.orders';
 import { dropdownItem } from './data.categories';
 
 @Injectable()
